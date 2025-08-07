@@ -1,4 +1,4 @@
-Note : These are some custom scripts used in the [presentation](https://zenodo.org/records/15308773) (version1) . In most cases offical (import/export) scripts in OMERO are recommended.
+Note : These are some custom scripts used in the [presentation](https://doi.org/10.5281/zenodo.15225615) (version1) . Please refer to [core scripts](https://github.com/ome/omero-scripts) for more.
 
 ### About
 Scripts to transfer metadata between OMERO and ARC via OMERO.web scripts. Import ISA metadata from ARC to OMERO and key-value pairs from OMERO to ARC as excel.
