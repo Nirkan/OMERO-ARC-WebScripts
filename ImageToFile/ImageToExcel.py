@@ -83,24 +83,24 @@ def run_script():
 
         if data_type == "Dataset":
             dataset = conn.getObject("Dataset", ids[0])
-            filename = f"{dataset.getName()}.xlsx" if dataset else "MetadataImages.xlsx"
+            filename = f"{dataset.getName()}.csv" if dataset else "MetadataImages.csv"
         elif data_type == "Image":
             if len(images) == 1:
                 image_name = images[0].getName()
                 base_name = os.path.splitext(image_name)[0]
-                filename = f"{base_name}.xlsx"
+                filename = f"{base_name}.csv"
             else:
-                filename = "MetadataImages.xlsx"
+                filename = "MetadataImages.csv"
 
         filepath = os.path.join(temp_dir, filename)
-        df.to_excel(filepath, index=False)
+        df.to_csv(filepath, index=False)
 
         # Upload the file as a downloadable OMERO file annotation
         file_ann = conn.createFileAnnfromLocalFile(
             filepath,
-            mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            mimetype="text/csv",
             ns="omero.script_results",
-            desc="Exported image metadata as Excel"
+            desc="Exported image metadata as CSV"
         )
 
         client.setOutput("File_Annotation", robject(file_ann._obj))
