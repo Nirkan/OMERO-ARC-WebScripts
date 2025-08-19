@@ -83,7 +83,7 @@ def run_script():
 
         if data_type == "Dataset":
             dataset = conn.getObject("Dataset", ids[0])
-            filename = f"{dataset.getName()}.csv" if dataset else "MetadataImages.csv"
+            filename = "MetadataImages.csv"
         elif data_type == "Image":
             if len(images) == 1:
                 image_name = images[0].getName()
