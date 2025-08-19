@@ -78,9 +78,20 @@ def run_script():
         data = extract_image_metadata(images)
         df = pd.DataFrame(data)
 
-        # Save Excel file to a temporary location
+        # Save Excel file
         temp_dir = tempfile.mkdtemp()
-        filename = "ImageToFile.xlsx"
+
+        if data_type == "Dataset":
+            dataset = conn.getObject("Dataset", ids[0])
+            filename = f"{dataset.getName()}.xlsx" if dataset else "MetadataImages.xlsx"
+        elif data_type == "Image":
+            if len(images) == 1:
+                image_name = images[0].getName()
+                base_name = os.path.splitext(image_name)[0]
+                filename = f"{base_name}.xlsx"
+            else:
+                filename = "MetadataImages.xlsx"
+
         filepath = os.path.join(temp_dir, filename)
         df.to_excel(filepath, index=False)
 
